@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.public_page }}
+          publish_dir: ./  # Path of your static files
